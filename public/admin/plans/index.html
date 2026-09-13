@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nimbox Admin - Planlar</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <img src="/logo.svg" alt="Nimbox" width="40" height="40">
+      <span class="logo-text">Nimbox Admin</span>
+    </a>
+    <div class="nav-links">
+      <a href="/admin" class="nav-link">📊 Dashboard</a>
+      <a href="/admin/plans" class="nav-link active">📦 Planlar</a>
+      <a href="/admin/users" class="nav-link">👥 Kullanıcılar</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h2>📦 Plan Yönetimi</h2>
+      <button class="btn-refresh" onclick="loadPlans()" style="background:#22c55e;color:#fff">🔄 Yenile</button>
+    </div>
+    <div class="pricing-grid" id="plans-grid">
+      <div class="loading"><div class="spinner"></div><p>Planlar yükleniyor...</p></div>
+    </div>
+
+    <div style="margin-top:30px">
+      <h2>Yeni Plan Ekle</h2>
+      <form id="add-plan-form" onsubmit="addPlan(event)" style="background:rgba(30,41,59,0.8);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:25px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px">
+          <div class="form-group"><label>Plan Adı</label><input type="text" id="plan-name" placeholder="örn: Ultra" required></div>
+          <div class="form-group"><label>Aylık Fiyat (₺)</label><input type="number" id="plan-price" placeholder="99.99" required></div>
+          <div class="form-group"><label>Yıllık Fiyat (₺)</label><input type="number" id="plan-yearly" placeholder="79.99"></div>
+          <div class="form-group"><label>Depolama</label><input type="text" id="plan-storage" placeholder="örn: 500 GB" required></div>
+          <div class="form-group"><label>Ödeme Popüler</label><select id="plan-popular"><option value="false">Hayır</option><option value="true">Evet</option></select></div>
+        </div>
+        <div class="form-group"><label>Özellikler (her satıra bir)</label><textarea id="plan-features" rows="4" placeholder="Özellik 1&#10;Özellik 2&#10;Özellik 3" required style="width:100%;padding:12px;background:rgba(15,23,42,0.8);border:1px solid rgba(245,158,11,0.2);border-radius:8px;color:#e2e8f0;resize:vertical"></textarea></div>
+        <button type="submit" class="btn-auth">Plan Ekle</button>
+      </form>
+    </div>
+  </main>
+
+  <footer><p>Nimbox © 2026 | Admin Panel</p></footer>
+  <script src="/js/admin.js"></script>
+  <script src="/js/admin-plans.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nimbox - Dosyalarım</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <img src="/logo.svg" alt="Nimbox" width="40" height="40">
+      <span class="logo-text">Nimbox</span>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link" data-page="index">🏠 Ana Sayfa</a>
+      <a href="/files" class="nav-link active" data-page="files">📁 Dosyalarım</a>
+      <a href="/pricing" class="nav-link" data-page="pricing">💰 Fiyatlar</a>
+      <a href="/admin" class="nav-link" data-page="admin" style="color:#f59e0b">🛡️ Admin</a>
+      <button class="nav-btn" onclick="openPlansModal()">📦 Planlar</button>
+      <div id="auth-nav">
+        <a href="/login" class="nav-btn" style="background:rgba(99,102,241,0.2);color:#a78bfa;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600;cursor:pointer">Giriş</a>
+        <a href="/register" class="nav-btn" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600;cursor:pointer">Kayıt Ol</a>
+      </div>
+      <div id="user-nav" style="display:none;align-items:center;gap:10px">
+        <span id="nav-username" style="font-size:13px;color:#a78bfa;font-weight:600"></span>
+        <button class="nav-btn" onclick="logout()" style="background:#ef4444">Çıkış</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <h1>📁 Tüm Dosyaların</h1>
+      <p>Yüklediğin dosyaları burada yönetebilirsin</p>
+    </section>
+
+    <div class="stats-bar">
+      <div class="stat-card"><div class="label">Toplam Dosya</div><div class="value" id="file-count">0</div></div>
+      <div class="stat-card"><div class="label">Toplam Boyut</div><div class="value" id="total-size">0</div></div>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="🔍 Dosya ara...">
+    </div>
+
+    <section>
+      <div class="section-header">
+        <h2>📋 Dosya Listesi</h2>
+        <div style="display:flex;gap:10px">
+          <button class="btn-refresh" onclick="loadFiles()">🔄 Yenile</button>
+          <button class="btn-zip" onclick="downloadZip()">🗜️ ZIP İndir</button>
+        </div>
+      </div>
+      <div class="file-grid" id="file-grid">
+        <div class="loading"><div class="spinner"></div><p>Dosyalar yükleniyor...</p></div>
+      </div>
+    </section>
+
+    <div id="toast-container"></div>
+  </main>
+
+  <!-- Plans Modal -->
+  <div class="modal-overlay" id="plans-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📦 Planları Keşfet</h2>
+        <button class="modal-close" onclick="closePlansModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <div class="loading"><div class="spinner"></div><p>Planlar yükleniyor...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Nimbox © 2026 | Cloud Storage Platform | Tüm hakları saklıdır</p>
+  </footer>
+
+  <script src="/js/ajax.js"></script>
+  <script src="/js/pages.js"></script>
+  <script src="/js/files.js"></script>
+</body>
+</html>

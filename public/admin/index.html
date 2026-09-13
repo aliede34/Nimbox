@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nimbox - Admin Panel</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <img src="/logo.svg" alt="Nimbox" width="40" height="40">
+      <span class="logo-text">Nimbox Admin</span>
+    </a>
+    <div class="nav-links">
+      <a href="/admin" class="nav-link active">📊 Dashboard</a>
+      <a href="/admin/plans" class="nav-link">📦 Planlar</a>
+      <a href="/admin/users" class="nav-link">👥 Kullanıcılar</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section id="admin-login-section">
+      <div class="auth-card">
+        <div class="auth-header">
+          <img src="/logo.svg" alt="Nimbox" width="60" height="60">
+          <h1>Admin Giriş</h1>
+          <p>Nimbox yönetim paneline giriş yapın</p>
+        </div>
+        <form id="admin-login-form">
+          <div class="form-group">
+            <label for="admin-secret">Admin Şifre</label>
+            <input type="password" id="admin-secret" placeholder="Admin şifrenizi girin" required>
+          </div>
+          <button type="submit" class="btn-auth">Giriş Yap</button>
+        </form>
+        <div id="admin-login-error" class="auth-error" style="display:none"></div>
+      </div>
+    </section>
+
+    <section id="admin-dashboard" style="display:none">
+      <div class="stats-bar">
+        <div class="stat-card"><div class="label">Toplam Kullanıcı</div><div class="value" id="stat-users">0</div></div>
+        <div class="stat-card"><div class="label">Aktif Kullanıcı</div><div class="value" id="stat-active">0</div></div>
+        <div class="stat-card"><div class="label">Toplam Dosya</div><div class="value" id="stat-files">0</div></div>
+        <div class="stat-card"><div class="label">Toplam Depolama</div><div class="value" id="stat-size">0</div></div>
+      </div>
+
+      <div style="margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn-refresh" onclick="loadAdminStats()">🔄 Yenile</button>
+        <button class="btn-refresh" onclick="window.location.href='#plans'" style="background:#6366f1;color:#fff">📦 Planları Yönet</button>
+      </div>
+    </section>
+
+    <div id="toast-container"></div>
+  </main>
+
+  <footer>
+    <p>Nimbox © 2026 | Admin Panel | Tüm hakları saklıdır</p>
+  </footer>
+
+<script src="/js/admin.js"></script>
+</body>
+</html>

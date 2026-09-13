@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nimbox Admin - Kullanıcılar</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <img src="/logo.svg" alt="Nimbox" width="40" height="40">
+      <span class="logo-text">Nimbox Admin</span>
+    </a>
+    <div class="nav-links">
+      <a href="/admin" class="nav-link">📊 Dashboard</a>
+      <a href="/admin/plans" class="nav-link">📦 Planlar</a>
+      <a href="/admin/users" class="nav-link active">👥 Kullanıcılar</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h2>👥 Kullanıcı Yönetimi</h2>
+      <button class="btn-refresh" onclick="loadUsers()" style="background:#22c55e;color:#fff">🔄 Yenile</button>
+    </div>
+    <div class="file-grid" id="users-grid">
+      <div class="loading"><div class="spinner"></div><p>Kullanıcılar yükleniyor...</p></div>
+    </div>
+  </main>
+
+  <footer><p>Nimbox © 2026 | Admin Panel</p></footer>
+  <script src="/js/admin.js"></script>
+  <script src="/js/admin-users.js"></script>
+</body>
+</html>

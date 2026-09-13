@@ -1,0 +1,24 @@
+{
+  "builds": [
+    {
+      "src": "src/vercel.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "src/vercel.js"
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/uploads/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "src/vercel.js"
+    }
+  ],
+  "framework": "express",
+  "regions": ["iad1"]
+}

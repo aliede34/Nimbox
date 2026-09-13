@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nimbox - Fiyatlar</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <img src="/logo.svg" alt="Nimbox" width="40" height="40">
+      <span class="logo-text">Nimbox</span>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link" data-page="index">🏠 Ana Sayfa</a>
+      <a href="/files" class="nav-link" data-page="files">📁 Dosyalarım</a>
+      <a href="/pricing" class="nav-link active" data-page="pricing">💰 Fiyatlar</a>
+      <a href="/admin" class="nav-link" data-page="admin" style="color:#f59e0b">🛡️ Admin</a>
+      <button class="nav-btn" onclick="openPlansModal()">📦 Planlar</button>
+      <div id="auth-nav">
+        <a href="/login" class="nav-btn" style="background:rgba(99,102,241,0.2);color:#a78bfa;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600;cursor:pointer">Giriş</a>
+        <a href="/register" class="nav-btn" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600;cursor:pointer">Kayıt Ol</a>
+      </div>
+      <div id="user-nav" style="display:none;align-items:center;gap:10px">
+        <span id="nav-username" style="font-size:13px;color:#a78bfa;font-weight:600"></span>
+        <button class="nav-btn" onclick="logout()" style="background:#ef4444">Çıkış</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <h1>💰 Nimbox Planları</h1>
+      <p>Türkiye'ye özel fiyatlarla ihtiyacına göre plan seç</p>
+    </section>
+
+    <div class="toggle-section">
+      <button class="toggle-btn active" id="monthly-btn" onclick="togglePricing('monthly')">Aylık</button>
+      <button class="toggle-btn" id="yearly-btn" onclick="togglePricing('yearly')">Yıllık <span class="toggle-badge">-%20</span></button>
+    </div>
+
+    <div class="pricing-grid" id="pricing-grid">
+      <div class="loading"><div class="spinner"></div><p>Planlar yükleniyor...</p></div>
+    </div>
+
+    <section style="margin-top:50px">
+      <h2 style="text-align:center;margin-bottom:20px">🤝 Neden Nimbox?</h2>
+      <div class="feature-grid" id="feature-grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Nimbox © 2026 | Cloud Storage Platform | Tüm hakları saklıdır</p>
+  </footer>
+
+  <script src="/js/ajax.js"></script>
+  <script src="/js/pricing.js"></script>
+</body>
+</html>

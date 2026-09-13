@@ -1,0 +1,7 @@
+node_modules
+.vercel
+.env
+logs
+uploads
+README.md
+API_URLS.txt

@@ -1,0 +1,84 @@
+NIMBOX API URL LERİ
+====================
+Base URL: http://localhost:3000
+
+===============================
+🔐 AUTH (KULLANICI)
+===============================
+POST   /api/auth/register        Kayıt ol
+POST   /api/auth/login           Giriş yap
+GET    /api/auth/me              Kullanıcı bilgisi
+POST   /api/auth/logout          Çıkış yap
+POST   /api/auth/update-plan     Plan değiştir
+
+===============================
+📦 PLANLAR (HERKES)
+===============================
+GET    /api/plans                Tüm planları listele
+GET    /api/plans/:id            Tek plan detayı
+
+===============================
+🛡️ ADMIN PANEL
+===============================
+POST   /api/admin/login          Admin giriş
+GET    /api/admin/plans          Plan listesi
+POST   /api/admin/plans          Plan ekle
+PUT    /api/admin/plans/:id      Plan güncelle
+DELETE /api/admin/plans/:id      Plan sil
+GET    /api/admin/users          Tüm kullanıcılar
+GET    /api/admin/stats          Genel istatistikler
+POST   /api/admin/users/:id/toggle Kullanıcı aktif/pasif
+
+===============================
+📁 DOSYALAR
+===============================
+GET    /api/files                Sayfalı dosya listesi (?page=&limit=)
+POST   /api/upload               Tek dosya yükle
+POST   /api/upload-multiple      Çoklu dosya yükle
+GET    /api/files/:id/download   Dosya indir
+DELETE /api/files/:id            Dosya sil
+GET    /api/files/:id/info       Dosya bilgisi
+POST   /api/files/:id/share      Paylaşım linki oluştur
+GET    /api/files/:id/shares     Paylaşım linkleri listesi
+DELETE /api/files/:shareId/unshare Paylaşımı kaldır
+GET    /api/files/:id/preview    Önizleme bilgisi
+GET    /api/files/:id/content    Metin içerik
+POST   /api/files/zip            ZIP indir (body: {file_ids: []})
+POST   /api/search               Dosya ara
+GET    /api/stats                İstatistikler
+GET    /api/health               Sağlık kontrolü
+
+===============================
+🔗 PAYLASIM LINKI
+===============================
+GET    /s/:token                 Paylaşım linki ile indirme
+
+===============================
+📚 API DOCS
+===============================
+GET    /api/docs                 Swagger belge (JSON)
+GET    /api/docs/json            OpenAPI JSON
+
+===============================
+📄 SAYFALAR
+===============================
+GET    /                         Ana sayfa
+GET    /files                    Dosyalarım
+GET    /pricing                  Fiyatlar
+GET    /login                    Giriş
+GET    /register                 Kayıt ol
+GET    /admin                    Admin paneli
+GET    /admin/plans              Admin - Planlar
+GET    /admin/users              Admin - Kullanıcılar
+
+===============================
+🔑 HEADER'LAR
+===============================
+Auth:       Authorization: Bearer <token>
+Content-Type: application/json
+
+===============================
+🔑 ADMIN ŞİFRE
+===============================
+.env dosyasından ADMIN_SECRET okunur
+Varsayılan: nimbox-admin-secret-change-in-production-2026
