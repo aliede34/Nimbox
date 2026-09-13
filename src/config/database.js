@@ -1,5 +1,7 @@
 const { Pool } = require('pg');
 const winston = require('winston');
+
+const IS_VERCEL = !!process.env.VERCEL;
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
@@ -7,7 +9,7 @@ const logger = winston.createLogger({
     winston.format.json()
   ),
   transports: [
-    new winston.transports.File({ filename: 'logs/db-error.log', level: 'error' }),
+    ...(IS_VERCEL ? [] : [new winston.transports.File({ filename: 'logs/db-error.log', level: 'error' })]),
     new winston.transports.Console({
       format: winston.format.combine(winston.format.colorize(), winston.format.simple())
     })

@@ -19,8 +19,25 @@ function cacheMiddleware() { return (req, res, next) => next(); }
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const UPLOAD_DIR = path.join(__dirname, '..', 'uploads');
+
+const IS_VERCEL = !!process.env.VERCEL;
+const DATA_DIR = IS_VERCEL ? '/tmp/nimbox' : path.join(__dirname, '..');
+const UPLOAD_DIR = path.join(DATA_DIR, 'uploads');
+const LOG_DIR = path.join(DATA_DIR, 'logs');
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
+
+[LOG_DIR, UPLOAD_DIR].forEach((dir) => {
+  try {
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  } catch (err) {
+    console.error(`Dizin oluşturulamadı (${dir}):`, err.message);
+  }
+});
+try {
+  if (!fs.existsSync(PUBLIC_DIR)) fs.mkdirSync(PUBLIC_DIR, { recursive: true });
+} catch (err) {
+  console.error('public dizini oluşturulamadı:', err.message);
+}
 
 const logger = winston.createLogger({
   level: 'info',
@@ -29,8 +46,8 @@ const logger = winston.createLogger({
     winston.format.json()
   ),
   transports: [
-    new winston.transports.File({ filename: path.join(__dirname, '..', 'logs', 'error.log'), level: 'error' }),
-    new winston.transports.File({ filename: path.join(__dirname, '..', 'logs', 'combined.log') }),
+    ...(IS_VERCEL ? [] : [new winston.transports.File({ filename: path.join(LOG_DIR, 'error.log'), level: 'error' })]) ,
+    ...(IS_VERCEL ? [] : [new winston.transports.File({ filename: path.join(LOG_DIR, 'combined.log') })]),
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.colorize(),
@@ -39,16 +56,6 @@ const logger = winston.createLogger({
     })
   ]
 });
-
-if (!fs.existsSync(path.join(__dirname, '..', 'logs'))) {
-  fs.mkdirSync(path.join(__dirname, '..', 'logs'), { recursive: true });
-}
-if (!fs.existsSync(UPLOAD_DIR)) {
-  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-}
-if (!fs.existsSync(PUBLIC_DIR)) {
-  fs.mkdirSync(PUBLIC_DIR, { recursive: true });
-}
 
 let dbReady = false;
 
